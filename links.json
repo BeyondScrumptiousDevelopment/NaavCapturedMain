@@ -1,0 +1,33 @@
+{
+  "_help": "Edit this file to change what the link page shows. Keep the quotes and commas. Set \"show\": false to hide a link without deleting it. Items marked TODO are placeholders waiting for real details.",
+
+  "tagline": "content, socials, video. for weddings, events and businesses.",
+  "location": "london, est 2025.",
+
+  "primary": {
+    "label": "Book a date",
+    "href": "mailto:hello@naavcaptured.com?subject=Booking%20enquiry&body=Hi%20naavcaptured%2C%0A%0ADate%3A%0AType%20of%20event%20or%20business%3A%0AWhere%3A%0AWhat%20you%20need%20(photo%2C%20video%2C%20socials)%3A%0A%0AThanks%2C",
+    "_todo": "Confirm the enquiry email address. Swap for the booking page once the client portal is live."
+  },
+
+  "links": [
+    { "label": "Weddings & events", "href": "mailto:hello@naavcaptured.com?subject=Weddings%20%26%20events%20enquiry", "show": true },
+    { "label": "Business content", "href": "mailto:hello@naavcaptured.com?subject=Business%20content%20enquiry", "show": true },
+    { "label": "Instagram @naavcaptured", "href": "https://www.instagram.com/naavcaptured/", "show": true },
+    { "label": "WhatsApp", "href": "https://wa.me/440000000000", "show": true, "_todo": "Replace 440000000000 with the real number: country code, no plus, no leading zero, e.g. 447700900123." },
+    { "label": "Email", "href": "mailto:hello@naavcaptured.com", "show": true, "_todo": "Confirm the email address." },
+    { "label": "Client login", "href": "https://portal.naavcaptured.com", "show": false, "_todo": "Set show to true once the client portal is live." }
+  ],
+
+  "email": "hello@naavcaptured.com",
+
+  "recentWork": [
+    { "caption": "your day, captured.", "tag": "WEDDING", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
+    { "caption": "the big day.", "tag": "REEL", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
+    { "caption": "capturing in progress...", "tag": "EVENT", "href": "https://www.instagram.com/naavcaptured/", "image": "assets/social/capturing-in-progress.jpg" },
+    { "caption": "behind the scenes.", "tag": "BTS", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
+    { "caption": "new menu, new content.", "tag": "BUSINESS", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
+    { "caption": "final edits.", "tag": "REEL", "href": "https://www.instagram.com/naavcaptured/", "image": "" }
+  ],
+  "_recentWorkHelp": "3 to 6 posts. Put a portrait image (4:5, about 800x1000px) in assets/work/ and write its path in \"image\", and paste the post or reel link in \"href\". With no image, the tile shows the caption as a typeset card."
+}

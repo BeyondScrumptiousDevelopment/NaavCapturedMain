@@ -1,0 +1,171 @@
+/* naavcaptured.com v1 — link page
+   Layout: one centred column (max 480px) on the bone page; the intro lockup lands in the masthead.
+   Values come from the naavcaptured brand kit. The page is deliberately single-theme (bone) so it
+   matches the intro video's own background with no visible edge. */
+
+:root {
+  --page: #ECEAE6;      /* measured from the intro video; brand bone is #EFEEEA */
+  --bone: #EFEEEA;
+  --surface: #FFFFFF;
+  --ink: #1C1C1C;
+  --on-ink: #EFEEEA;
+  --stone: #D9D6CF;
+  --ash: #6B6862;       /* 4.6:1 on --page */
+
+  --font-sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Times New Roman", "Times New Roman MT", Tinos, Times, serif;
+
+  --space-1: 4px; --space-2: 8px; --space-3: 16px; --space-4: 24px; --space-5: 48px; --space-6: 96px;
+  --radius-media: 4px; --radius-card: 12px; --radius-pill: 999px;
+  --ease: cubic-bezier(.7, 0, .2, 1);
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--page); -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 24px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* ---------- wordmark (typeset: Times New Roman italic + Nunito Sans Black, one baseline) ---------- */
+.wm { display: inline-flex; align-items: baseline; gap: .04em; line-height: 1; white-space: nowrap; color: var(--ink); }
+.wm .naav { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: 1.02em; }
+.wm .captured { font-family: var(--font-sans); font-weight: 900; letter-spacing: -.055em; }
+
+/* ---------- page ---------- */
+.page {
+  max-width: calc(480px + 2 * var(--space-4));
+  margin: 0 auto;
+  padding-block: var(--space-5) var(--space-4);
+  padding-left: max(var(--space-4), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--space-4), env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-height: 100svh;
+}
+
+.masthead { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-2); }
+.brand { margin: 0 0 var(--space-2); font-size: clamp(38px, 11vw, 48px); font-weight: inherit; }
+.tagline { margin: 0; font-size: 16px; line-height: 22px; font-weight: 500; max-width: 30ch; text-wrap: balance; }
+.where { margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); }
+
+main { display: flex; flex-direction: column; gap: var(--space-5); }
+
+/* ---------- link pills ---------- */
+.links { display: flex; flex-direction: column; gap: 12px; }
+.pill {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  min-height: 56px;
+  padding: 0 var(--space-4);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 16px; font-weight: 700; letter-spacing: -.01em;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+.pill svg { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; transition: transform .25s var(--ease-out); }
+.pill:hover svg, .pill:focus-visible svg { transform: translate(2px, -2px); }
+.pill:hover { background: var(--ink); color: var(--on-ink); }
+.pill-primary { background: var(--ink); color: var(--on-ink); min-height: 60px; font-size: 17px; margin-bottom: var(--space-2); }
+.pill-primary:hover { background: #000; }
+
+/* ---------- recent work ---------- */
+.work { display: flex; flex-direction: column; gap: var(--space-3); }
+.work-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.work h2 { margin: 0; font-size: 24px; line-height: 28px; font-weight: 800; letter-spacing: -.03em; }
+.work h2 em { font-family: var(--font-serif); font-weight: 400; font-size: 1.1em; letter-spacing: -.01em; }
+.work-more { font-size: 14px; font-weight: 700; color: var(--ash); text-decoration: none; }
+.work-more:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+
+.tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tile a {
+  position: relative; display: block; aspect-ratio: 4 / 5; max-width: 100%;
+  border-radius: var(--radius-media); overflow: hidden; text-decoration: none;
+  background: var(--bone); color: var(--ink);
+}
+.tile img { width: 100%; height: 100%; object-fit: cover; object-position: 0 0; display: block; transition: transform .5s var(--ease-out); }
+.tile a:hover img { transform: scale(1.03); }
+.tile .card {
+  position: absolute; inset: 0; padding: 10px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-weight: 900; font-size: clamp(13px, 3.6vw, 17px); line-height: 1; letter-spacing: -.045em;
+  text-wrap: balance;
+}
+.tile:nth-child(3n+2) a { background: var(--ink); color: var(--on-ink); }
+.tile .card .mini { align-self: flex-end; font-size: 9px; letter-spacing: -.02em; display: inline-flex; gap: 1px; align-items: baseline; }
+.tile .card .mini i { font-family: var(--font-serif); font-weight: 400; font-size: 1.05em; letter-spacing: 0; }
+.tile .tag {
+  position: absolute; left: 6px; bottom: 6px;
+  font-size: 9px; line-height: 14px; font-weight: 800; letter-spacing: .08em;
+  padding: 1px 7px; border-radius: var(--radius-pill);
+  background: var(--ink); color: var(--on-ink);
+}
+.tile:nth-child(3n+2) .tag { background: var(--on-ink); color: var(--ink); }
+.tile .card + .tag { display: none; }
+
+/* ---------- footer ---------- */
+.foot { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding-top: var(--space-4); border-top: 1px solid var(--stone); }
+.wm-sm { font-size: 20px; }
+.mail { margin: 0; font-size: 14px; font-weight: 500; user-select: all; }
+.legal { margin: 0; font-size: 13px; color: var(--ash); }
+.legal a { text-underline-offset: 3px; }
+
+/* ---------- intro ---------- */
+.intro-stage { display: none; }
+.intro .intro-stage {
+  position: fixed; inset: 0; z-index: 20;
+  display: grid; place-items: center;
+  background: var(--page);
+  padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+}
+.intro-stage.clear { background: transparent; pointer-events: none; }
+.intro-lockup { display: flex; flex-direction: column; align-items: center; gap: .55em; font-size: clamp(42px, 12.5vw, 104px); }
+.intro-lockup .wm { transform-origin: 50% 50%; will-change: transform; }
+.intro-lockup .est { font-size: .2em; font-weight: 700; letter-spacing: .08em; opacity: 0; transform: translateY(6px); transition: opacity .6s var(--ease-out), transform .6s var(--ease-out); }
+.intro-lockup .est.on { opacity: 1; transform: none; }
+.intro-lockup .ch { opacity: 0; }
+.intro-lockup .ch.on { opacity: 1; }
+.intro video { width: 100%; height: 100%; object-fit: contain; }
+
+.skip {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: calc(var(--space-4) + env(safe-area-inset-bottom, 0px));
+  font: inherit; font-size: 13px; font-weight: 700; letter-spacing: .04em;
+  height: 36px; padding: 0 18px; border-radius: var(--radius-pill);
+  border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer;
+  opacity: 0; transition: opacity .4s var(--ease-out);
+}
+.skip.on { opacity: 1; }
+.skip:hover { background: var(--ink); color: var(--on-ink); }
+
+/* While the intro plays, the page waits underneath; the header wordmark is where the lockup lands. */
+.intro .brand { visibility: hidden; }
+.intro .reveal { opacity: 0; transform: translateY(10px); }
+.intro.revealed .reveal {
+  opacity: 1; transform: none;
+  transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 55ms);
+}
+.intro.landed .brand { visibility: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+@media (min-width: 720px) {
+  .page { padding-block: var(--space-6) var(--space-4); }
+  .brand { font-size: 56px; }
+}

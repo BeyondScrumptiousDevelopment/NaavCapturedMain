@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>naavcaptured — content, socials, video. London</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="naavcaptured is a London content studio: photo, video and social content for weddings, events and businesses. Est 2025.">
+<meta name="theme-color" content="#ECEAE6">
+<link rel="canonical" href="https://naavcaptured.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://naavcaptured.com/">
+<meta property="og:title" content="naavcaptured — content, socials, video. London">
+<meta property="og:description" content="Photo, video and social content for weddings, events and businesses. London, est 2025.">
+<meta property="og:image" content="https://naavcaptured.com/assets/social/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800;6..12,900&family=Tinos:ital@1&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>
+  /* Decide before first paint whether the intro plays, so the page never flashes. */
+  (function () {
+    var d = document.documentElement, seen = false;
+    try { seen = sessionStorage.getItem('nc-intro-seen') === '1'; } catch (e) {}
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!seen && !reduce && location.hash !== '#links') d.classList.add('intro');
+  })();
+</script>
+</head>
+<body>
+
+<!-- Intro: types "naav" then "captured.", lands on the EST 2025. lockup, then the lockup moves into the header.
+     To use the exported video instead, add data-video="assets/video/intro" to this element (see README). -->
+<div class="intro-stage" id="intro" aria-hidden="true">
+  <div class="intro-lockup" id="introLockup">
+    <span class="wm" id="introMark"><span class="naav" data-type="naav"></span><span class="captured" data-type="captured."></span></span>
+    <span class="est" id="introEst">EST 2025.</span>
+  </div>
+  <button class="skip" id="skip" type="button" tabindex="-1">skip</button>
+</div>
+
+<div class="page">
+  <header class="masthead">
+    <h1 class="brand" id="brand"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></h1>
+    <p class="tagline reveal" id="tagline" style="--i:1">content, socials, video. for weddings, events and businesses.</p>
+    <p class="where reveal" id="where" style="--i:2">london, est 2025.</p>
+  </header>
+
+  <main>
+    <nav class="links" aria-label="Links" id="links">
+      <!-- Filled from links.json. This fallback shows if it can't load. -->
+      <a class="pill pill-primary reveal" style="--i:3" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank"><span>Instagram @naavcaptured</span></a>
+    </nav>
+
+    <section class="work reveal" style="--i:10" aria-labelledby="workTitle">
+      <div class="work-head">
+        <h2 id="workTitle">recent <em>work.</em></h2>
+        <a class="work-more" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">@naavcaptured</a>
+      </div>
+      <ul class="tiles" id="tiles"></ul>
+    </section>
+  </main>
+
+  <footer class="foot reveal" style="--i:11">
+    <span class="wm wm-sm"><span class="naav">naav</span><span class="captured">captured.</span></span>
+    <p class="mail" id="mail" hidden>hello@naavcaptured.com</p>
+    <p class="legal">© 2026 naavcaptured · <a href="privacy.html">privacy</a></p>
+  </footer>
+</div>
+
+<script src="app.js" defer></script>
+<!-- Cloudflare Web Analytics (no cookies). Paste your token from the Cloudflare dashboard, then remove the comment markers.
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
+-->
+</body>
+</html>

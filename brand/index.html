@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>naavcaptured Brand Kit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800;6..12,900&family=Tinos:ital@1&display=swap">
+<style>
+/* Layout: a contact-sheet brand book. Sections stack on a bone page; each opens with a lowercase
+   heading that ends in a full stop, like the wordmark. Monochrome throughout so the work is the colour. */
+:root {
+  --bone: #EFEEEA;
+  --surface: #FFFFFF;
+  --ink: #1C1C1C;
+  --on-ink: #EFEEEA;
+  --stone: #D9D6CF;
+  --ash: #6B6862;
+  --sage: #4E6A4B;
+  --amber: #805810;
+  --rust: #A3412F;
+  --tint: #E4E2DC;
+  --font-sans: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Times New Roman", "Times New Roman MT", Tinos, Times, serif;
+  --s1: 4px; --s2: 8px; --s3: 16px; --s4: 24px; --s5: 48px; --s6: 96px;
+  --r-media: 4px; --r-card: 12px; --r-pill: 999px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bone); color: var(--ink); font-family: var(--font-sans); font-size: 16px; line-height: 24px; -webkit-font-smoothing: antialiased; }
+a { color: inherit; text-underline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: .86em; background: var(--tint); padding: 1px 5px; border-radius: 4px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); }
+
+.wm { display: inline-flex; align-items: baseline; gap: .04em; line-height: 1; white-space: nowrap; }
+.wm .naav { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; font-size: 1.02em; }
+.wm .captured { font-weight: 900; letter-spacing: -.055em; }
+
+/* top bar */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bone); border-bottom: 1px solid var(--stone); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bone); }
+.bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); padding-block: 14px; }
+.bar .wm { font-size: 20px; }
+.bar nav { display: flex; gap: var(--s4); overflow-x: auto; scrollbar-width: none; }
+.bar nav a { font-size: 13px; font-weight: 700; text-decoration: none; color: var(--ash); white-space: nowrap; }
+.bar nav a:hover { color: var(--ink); }
+
+/* hero */
+.hero { padding-block: var(--s6) var(--s5); display: grid; gap: var(--s5); }
+.hero h1 { margin: 0; font-size: clamp(48px, 10vw, 112px); line-height: .95; font-weight: 900; letter-spacing: -.055em; text-wrap: balance; }
+.hero h1 em { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.01em; }
+.hero-meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s4); border-top: 1px solid var(--ink); padding-top: var(--s3); }
+.hero-meta div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.label { font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); }
+.hero-meta p { margin: 0; font-weight: 500; }
+
+/* sections */
+section.block { padding-block: var(--s5) var(--s6); border-top: 1px solid var(--stone); }
+.sec-head { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s2); margin-bottom: var(--s5); max-width: 720px; }
+.sec-head h2 { margin: 0; font-size: clamp(36px, 6vw, 56px); line-height: 1; font-weight: 900; letter-spacing: -.045em; }
+.sec-head h2 em { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.01em; }
+.sec-head p { margin: 0; font-size: 18px; line-height: 28px; color: var(--ink); max-width: 60ch; }
+h3 { margin: 0 0 var(--s2); font-size: 20px; line-height: 26px; font-weight: 800; letter-spacing: -.02em; }
+.grid { display: grid; gap: var(--s3); }
+.g2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.g3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.g4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--stone); border-radius: var(--r-card); padding: var(--s4); min-width: 0; }
+.muted { color: var(--ash); }
+ul.rules { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ul.rules li { padding-left: 22px; position: relative; }
+ul.rules li::before { content: ""; position: absolute; left: 0; top: 10px; width: 10px; height: 1.5px; background: var(--ink); }
+
+/* logo */
+figure { margin: 0; display: flex; flex-direction: column; gap: var(--s2); min-width: 0; }
+figure img { width: 100%; height: auto; display: block; border-radius: var(--r-media); border: 1px solid var(--stone); aspect-ratio: 1; object-fit: cover; }
+figcaption { font-size: 14px; line-height: 20px; }
+figcaption b { display: block; font-weight: 800; }
+.logo-main { background: var(--surface); border: 1px solid var(--stone); border-radius: var(--r-card); padding: clamp(24px, 6vw, 72px); display: grid; place-items: center; gap: var(--s3); margin-bottom: var(--s3); }
+.logo-main .wm { font-size: clamp(44px, 9vw, 104px); }
+.construct { display: flex; gap: var(--s4); flex-wrap: wrap; justify-content: center; font-size: 13px; color: var(--ash); }
+.construct span b { color: var(--ink); }
+.clear { position: relative; display: inline-block; padding: 28px; outline: 1px dashed var(--ash); outline-offset: -1px; }
+.clear .wm { font-size: 40px; }
+.clear::after { content: "c"; position: absolute; top: 4px; left: 6px; font-weight: 900; font-size: 18px; color: var(--ash); }
+.donts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr)); gap: var(--s3); }
+.dont { background: var(--surface); border: 1px solid var(--stone); border-radius: var(--r-card); padding: var(--s3); display: flex; flex-direction: column; gap: var(--s3); }
+.dont .demo { height: 96px; display: grid; place-items: center; border-radius: var(--r-media); background: var(--bone); overflow: hidden; }
+.dont .demo .wm { font-size: 26px; }
+.dont p { margin: 0; font-size: 14px; line-height: 20px; }
+.dont p::before { content: "✕ "; font-weight: 900; color: var(--rust); }
+
+/* colour */
+.swatch { border-radius: var(--r-card); overflow: hidden; border: 1px solid var(--stone); background: var(--surface); display: flex; flex-direction: column; min-width: 0; }
+.swatch .chip { height: 140px; padding: var(--s3); display: flex; align-items: flex-end; font-weight: 900; font-size: 28px; letter-spacing: -.04em; }
+.swatch .info { padding: var(--s3); display: flex; flex-direction: column; gap: 6px; font-size: 14px; line-height: 20px; }
+.swatch .row { display: flex; justify-content: space-between; gap: var(--s2); align-items: baseline; }
+.copy { font: inherit; font-size: 13px; font-weight: 800; letter-spacing: .02em; border: 1px solid var(--stone); background: var(--bone); color: var(--ink); border-radius: var(--r-pill); padding: 2px 10px; cursor: pointer; font-variant-numeric: tabular-nums; }
+.copy:hover { border-color: var(--ink); }
+.ratio { font-variant-numeric: tabular-nums; font-weight: 700; }
+.status-row { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 10px; border-radius: var(--r-pill); background: var(--tint); }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.b-sage { color: var(--sage); } .b-amber { color: var(--amber); } .b-rust { color: var(--rust); }
+.ratio-bar { display: flex; height: 40px; border-radius: var(--r-media); overflow: hidden; border: 1px solid var(--stone); margin-top: var(--s3); }
+.ratio-bar span { display: grid; place-items: center; font-size: 12px; font-weight: 800; letter-spacing: .04em; }
+
+/* type */
+.spec { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: var(--s3) var(--s4); align-items: baseline; padding-block: var(--s3); border-bottom: 1px solid var(--stone); }
+.spec:first-of-type { border-top: 1px solid var(--stone); }
+.spec .meta { font-size: 13px; line-height: 18px; color: var(--ash); font-variant-numeric: tabular-nums; }
+.spec .meta b { display: block; color: var(--ink); font-size: 14px; }
+.spec .sample { min-width: 0; overflow-wrap: anywhere; }
+.faces { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: var(--s3); margin-bottom: var(--s5); }
+.face { background: var(--ink); color: var(--on-ink); border-radius: var(--r-card); padding: var(--s4); display: flex; flex-direction: column; gap: var(--s3); min-width: 0; }
+.face .big { font-size: clamp(96px, 16vw, 160px); line-height: .9; }
+.face .alpha { font-size: 18px; line-height: 28px; overflow-wrap: anywhere; opacity: .85; }
+.face .label { color: #A8A59E; }
+@media (max-width: 560px) { .spec { grid-template-columns: minmax(0, 1fr); gap: var(--s1); } }
+
+/* voice */
+.voice-quote { font-size: clamp(24px, 3.4vw, 34px); line-height: 1.25; font-weight: 800; letter-spacing: -.03em; margin: 0 0 var(--s5); max-width: 28ch; text-wrap: balance; }
+.voice-quote em { font-family: var(--font-serif); font-weight: 400; }
+.dodont { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: var(--s3); }
+.say { display: grid; gap: 10px; }
+.say div { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: var(--s2); font-size: 15px; line-height: 22px; padding-block: 8px; border-bottom: 1px solid var(--stone); }
+.say div:last-child { border-bottom: 0; }
+.say .k { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding-top: 2px; }
+.say .yes { color: var(--sage); } .say .no { color: var(--rust); }
+
+/* components */
+.btn { font: inherit; font-size: 15px; font-weight: 700; height: 48px; padding: 0 24px; border-radius: var(--r-pill); border: 1.5px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+.btn-primary { background: var(--ink); color: var(--on-ink); }
+.btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.stack { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 14px; font-weight: 600; }
+.input { font: inherit; font-size: 16px; height: 44px; padding: 0 16px; border-radius: var(--r-card); border: 1px solid var(--stone); background: var(--surface); color: var(--ink); width: 100%; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tile { position: relative; aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--r-media); background: var(--stone); overflow: hidden; }
+.tile:nth-child(2) { background: #CFCAC0; } .tile:nth-child(3) { background: #BDB7AC; }
+.tile .tag { position: absolute; left: 6px; bottom: 6px; font-size: 10px; font-weight: 800; letter-spacing: .08em; padding: 1px 7px; border-radius: var(--r-pill); background: var(--ink); color: var(--on-ink); }
+.spacing { display: flex; flex-direction: column; gap: 8px; }
+.spacing div { display: grid; grid-template-columns: 70px 56px minmax(0, 1fr); gap: var(--s2); align-items: center; font-size: 13px; font-variant-numeric: tabular-nums; }
+.spacing i { display: block; height: 12px; background: var(--ink); border-radius: 2px; }
+
+/* social */
+.social { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--s4); align-items: start; }
+.post { aspect-ratio: 1; max-width: 100%; background: var(--bone); border: 1px solid var(--stone); border-radius: var(--r-media); position: relative; padding: 7%; display: flex; flex-direction: column; justify-content: space-between; container-type: inline-size; overflow: hidden; }
+.post .stmt { font-weight: 900; font-size: 15cqi; line-height: .9; letter-spacing: -.06em; }
+.post .sig { align-self: flex-end; display: flex; flex-direction: column; align-items: center; gap: 1.5cqi; }
+.post .sig .wm { font-size: 6.5cqi; }
+.post .sig small { font-size: 2.4cqi; font-weight: 800; }
+.post.ink { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+
+/* downloads */
+.files { display: grid; gap: 0; }
+.files div { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 2fr) auto; gap: var(--s3); padding-block: 12px; border-bottom: 1px solid var(--stone); align-items: baseline; font-size: 14px; line-height: 20px; }
+.files div:first-child { border-top: 1px solid var(--ink); }
+.files code { overflow-wrap: anywhere; justify-self: start; }
+@media (max-width: 640px) { .files div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+
+footer.end { background: var(--ink); color: var(--on-ink); }
+footer.end .wrap { padding-block: var(--s6); display: flex; flex-direction: column; align-items: center; gap: var(--s3); text-align: center; }
+footer.end .wm { font-size: clamp(48px, 10vw, 96px); }
+footer.end p { margin: 0; color: #A8A59E; font-size: 14px; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <span class="wm" aria-label="naavcaptured"><span class="naav">naav</span><span class="captured">captured.</span></span>
+    <nav aria-label="Sections">
+      <a href="#logo">logo</a><a href="#colour">colour</a><a href="#type">type</a><a href="#voice">voice</a><a href="#components">components</a><a href="#social">social</a><a href="#files">files</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <span class="label">Brand kit · v1 · November 2026</span>
+    <h1>quiet, editorial, <em>monochrome.</em></h1>
+    <div class="hero-meta">
+      <div><span class="label">Who</span><p>A London content studio for weddings, events and businesses.</p></div>
+      <div><span class="label">What</span><p>Content, socials, video.</p></div>
+      <div><span class="label">The idea</span><p>The brand stays ink on bone so the client's photos and films are the only colour on the page.</p></div>
+      <div><span class="label">Since</span><p>Est 2025. Working quietly since August.</p></div>
+    </div>
+  </div>
+
+  <!-- LOGO -->
+  <section class="block" id="logo">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">01 · Logo</span>
+        <h2>the <em>wordmark.</em></h2>
+        <p>One word, lowercase, with the full stop. <i>naav</i> in Times New Roman MT Italic, then <b>captured.</b> in Nunito Sans Black, on one baseline with almost no gap.</p>
+      </div>
+
+      <div class="logo-main">
+        <span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span>
+        <div class="construct">
+          <span><b>naav</b> · Times New Roman MT Italic 400</span>
+          <span><b>captured.</b> · Nunito Sans 900, tracked −5%</span>
+          <span><b>colour</b> · ink #1C1C1C</span>
+        </div>
+      </div>
+
+      <div class="grid g4" style="margin-bottom: var(--s5)">
+        <figure><img src="../assets/logo/lockup-est-bone.jpg" alt="naavcaptured lockup with EST 2025. on bone" loading="lazy"><figcaption><b>Lockup, bone</b>Covers, splash screens, the site intro, watermark plates.</figcaption></figure>
+        <figure><img src="../assets/logo/lockup-est-ink.jpg" alt="naavcaptured lockup reversed on ink" loading="lazy"><figcaption><b>Lockup, ink</b>Profile picture, dark mode, end cards.</figcaption></figure>
+        <figure><img src="../assets/logo/wordmark-bone.jpg" alt="naavcaptured wordmark on bone" loading="lazy"><figcaption><b>Wordmark, bone</b>The default. Headers, documents, the portal.</figcaption></figure>
+        <figure><img src="../assets/logo/wordmark-white.jpg" alt="naavcaptured wordmark on white" loading="lazy"><figcaption><b>Wordmark, white</b>On pure white: invoices, email signatures.</figcaption></figure>
+      </div>
+
+      <div class="grid g2" style="margin-bottom: var(--s5)">
+        <div class="card">
+          <h3>clear space.</h3>
+          <p class="muted" style="margin:0 0 var(--s3)">Keep the height of the "c" in captured clear on every side. Smallest size: 80px wide on screen, 25mm in print.</p>
+          <div class="clear"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></div>
+        </div>
+        <div class="card">
+          <h3>rules.</h3>
+          <ul class="rules">
+            <li>Ink on bone, ink on white, or bone on ink. Nothing else.</li>
+            <li>Keep <i>naav</i> and <b>captured.</b> on one line, always together.</li>
+            <li>Always keep the full stop.</li>
+            <li>The italic <i>naav</i> is primary. The upright-serif version is archive only.</li>
+            <li>Over photos, use a bone or ink plate behind the mark rather than placing it straight on the image.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>don't.</h3>
+      <div class="donts">
+        <div class="dont"><div class="demo"><span class="wm" style="flex-direction:column;align-items:center"><span class="naav">naav</span><span class="captured">captured.</span></span></div><p>Split it onto two lines.</p></div>
+        <div class="dont"><div class="demo"><span class="wm"><span class="naav" style="color:#A3412F">naav</span><span class="captured">captured.</span></span></div><p>Recolour one half, or use any colour but ink and bone.</p></div>
+        <div class="dont"><div class="demo"><span class="wm"><span class="naav">naav</span><span class="captured">captured</span></span></div><p>Drop the full stop.</p></div>
+        <div class="dont"><div class="demo"><span class="wm" style="text-transform:uppercase"><span class="naav">naav</span><span class="captured">captured.</span></span></div><p>Set it in capitals, or swap the fonts.</p></div>
+        <div class="dont"><div class="demo"><span class="wm" style="color:transparent;-webkit-text-stroke:1px #1C1C1C"><span class="naav">naav</span><span class="captured">captured.</span></span></div><p>Outline, shadow, gradient or stretch it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLOUR -->
+  <section class="block" id="colour">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">02 · Colour</span>
+        <h2>ink on <em>bone.</em></h2>
+        <p>Bone and ink carry the brand. White lifts cards and galleries, stone draws hairlines, ash is for secondary text. Three status colours exist only inside the client portal and never appear in marketing.</p>
+      </div>
+
+      <div class="grid g3" style="margin-bottom: var(--s3)">
+        <div class="swatch"><div class="chip" style="background:var(--bone);color:var(--ink)">bone</div><div class="info"><div class="row"><b>Page background</b><button class="copy" type="button" data-hex="#EFEEEA">#EFEEEA</button></div><span class="muted">RGB 239 238 234 · the brand's off-white.</span><span class="muted">Website intro uses <code>#ECEAE6</code> to match the animation's render.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--ink);color:var(--on-ink)">ink</div><div class="info"><div class="row"><b>Text, logo, main button</b><button class="copy" type="button" data-hex="#1C1C1C">#1C1C1C</button></div><span class="muted">RGB 28 28 28 · <span class="ratio">14.7:1</span> on bone.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface);color:var(--ink)">surface</div><div class="info"><div class="row"><b>Cards, galleries</b><button class="copy" type="button" data-hex="#FFFFFF">#FFFFFF</button></div><span class="muted">Sits above bone, edged with a stone hairline.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--stone);color:var(--ink)">stone</div><div class="info"><div class="row"><b>Hairlines, borders</b><button class="copy" type="button" data-hex="#D9D6CF">#D9D6CF</button></div><span class="muted">Dividers and input borders. Never text.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--ash);color:var(--on-ink)">ash</div><div class="info"><div class="row"><b>Secondary text</b><button class="copy" type="button" data-hex="#6B6862">#6B6862</button></div><span class="muted">Meta and captions · <span class="ratio">4.8:1</span> on bone.</span></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--tint);color:var(--ink);flex-direction:column;align-items:flex-start;justify-content:flex-end;gap:10px"><span>status</span><span class="status-row"><span class="badge b-sage">Paid</span><span class="badge b-amber">Pending</span><span class="badge b-rust">Overdue</span></span></div><div class="info"><div class="row"><b>Portal only</b><span class="muted" style="font-size:13px">sage · amber · rust</span></div><span class="muted"><code>#4E6A4B</code> <code>#805810</code> <code>#A3412F</code> on <code>#E4E2DC</code></span></div></div>
+      </div>
+
+      <div class="card">
+        <h3>how much of each.</h3>
+        <p class="muted" style="margin:0">Mostly bone. Ink for words and one button. Everything else is a whisper.</p>
+        <div class="ratio-bar" aria-label="Colour proportions: bone 70%, ink 18%, surface 7%, stone and ash 5%">
+          <span style="flex:70;background:var(--bone)">BONE 70</span>
+          <span style="flex:18;background:var(--ink);color:var(--on-ink)">INK 18</span>
+          <span style="flex:7;background:var(--surface)">7</span>
+          <span style="flex:5;background:var(--stone)"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE -->
+  <section class="block" id="type">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">03 · Type</span>
+        <h2>two voices, <em>one line.</em></h2>
+        <p>Both faces come from the wordmark. Nunito Sans does the work. Times italic is the <i>naav</i> voice: one or two words inside a heading, never a paragraph.</p>
+      </div>
+
+      <div class="faces">
+        <div class="face">
+          <span class="label">Display accent · Times New Roman MT Italic</span>
+          <span class="big" style="font-family:var(--font-serif);font-style:italic">Aa</span>
+          <span class="alpha" style="font-family:var(--font-serif);font-style:italic">abcdefghijklmnopqrstuvwxyz 0123456789</span>
+          <span style="font-size:14px;line-height:20px">Built into Apple and Windows devices. Tinos italic (Google Fonts) is the matching fallback on Android.</span>
+        </div>
+        <div class="face">
+          <span class="label">Text · Nunito Sans 400–900</span>
+          <span class="big" style="font-weight:900;letter-spacing:-.05em">Aa</span>
+          <span class="alpha" style="font-weight:700">abcdefghijklmnopqrstuvwxyz 0123456789</span>
+          <span style="font-size:14px;line-height:20px">Free on Google Fonts. Load 400, 500, 700, 800 and 900.</span>
+        </div>
+      </div>
+
+      <div class="spec"><div class="meta"><b>display</b>Nunito 900 · 56/56 · −4%</div><div class="sample" style="font-size:clamp(36px,6vw,56px);line-height:1;font-weight:900;letter-spacing:-.04em">capturing in progress...</div></div>
+      <div class="spec"><div class="meta"><b>accent-xl</b>Times italic · 64/64</div><div class="sample" style="font-size:clamp(28px,5vw,40px);line-height:1.1;font-weight:800;letter-spacing:-.03em">your day, <span style="font-family:var(--font-serif);font-style:italic;font-weight:400;font-size:1.25em;letter-spacing:-.01em">captured.</span></div></div>
+      <div class="spec"><div class="meta"><b>h1</b>Nunito 800 · 32/36 · −3%</div><div class="sample" style="font-size:32px;line-height:36px;font-weight:800;letter-spacing:-.03em">your gallery.</div></div>
+      <div class="spec"><div class="meta"><b>h2</b>Nunito 700 · 20/26 · −2%</div><div class="sample" style="font-size:20px;line-height:26px;font-weight:700;letter-spacing:-.02em">final edits</div></div>
+      <div class="spec"><div class="meta"><b>body</b>Nunito 400 · 16/24</div><div class="sample">Your highlight film is ready to watch. Approve it or tell us what to change.</div></div>
+      <div class="spec"><div class="meta"><b>small</b>Nunito 500 · 14/20</div><div class="sample" style="font-size:14px;line-height:20px;font-weight:500;color:var(--ash)">24 photos · added 6 Nov</div></div>
+      <div class="spec"><div class="meta"><b>label</b>Nunito 700 · 12/16 · +8% · caps</div><div class="sample" style="font-size:12px;line-height:16px;font-weight:700;letter-spacing:.08em">EST 2025.</div></div>
+
+      <ul class="rules" style="margin-top: var(--s4); max-width: 720px">
+        <li>Headings are lowercase, heavy, tightly tracked, and usually end with a full stop.</li>
+        <li>Body text is sentence case. Labels in capitals only for small tags like EST 2025. or RAW.</li>
+        <li>Never set a whole sentence in the italic.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- VOICE -->
+  <section class="block" id="voice">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">04 · Voice</span>
+        <h2>understated <em>and warm.</em></h2>
+        <p>Talk about the moment and the client, not the gear. Short sentences, "we", plain words.</p>
+      </div>
+      <p class="voice-quote">"We've been quietly working since August… figured it's time to introduce ourselves <em>properly.</em>"</p>
+      <div class="dodont">
+        <div class="card say">
+          <h3>say.</h3>
+          <div><span class="k yes">Do</span><span>content, socials, video.</span></div>
+          <div><span class="k yes">Do</span><span>capturing in progress...</span></div>
+          <div><span class="k yes">Do</span><span>Your highlight film is ready.</span></div>
+          <div><span class="k yes">Do</span><span>This date clashes with another booking.</span></div>
+        </div>
+        <div class="card say">
+          <h3>don't say.</h3>
+          <div><span class="k no">Don't</span><span>STUNNING cinematic EPIC visuals!!!</span></div>
+          <div><span class="k no">Don't</span><span>Shot on the new 8K full-frame rig.</span></div>
+          <div><span class="k no">Don't</span><span>Oops! Something went wrong 😢</span></div>
+          <div><span class="k no">Don't</span><span>More than one emoji in a caption. The house emoji is 🫡.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section class="block" id="components">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">05 · Layout and components</span>
+        <h2>lots of <em>bone.</em></h2>
+        <p>A calm grid with room to breathe. Photos get 4px corners, no borders, no shadows, no filters. Cards use a stone hairline instead of a shadow. Buttons are pills.</p>
+      </div>
+      <div class="grid g3">
+        <div class="card">
+          <h3>buttons.</h3>
+          <p class="muted" style="margin:0 0 var(--s3);font-size:14px">One ink pill for the main action. Outline for everything else.</p>
+          <div class="stack">
+            <a class="btn btn-primary" href="#components">Book a date <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg></a>
+            <a class="btn" href="#components">Instagram</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>inputs.</h3>
+          <p class="muted" style="margin:0 0 var(--s3);font-size:14px">12px corners, stone border, white fill.</p>
+          <label class="field" for="demoDate">Your date<input class="input" id="demoDate" type="text" value="Sat 14 June 2027"></label>
+        </div>
+        <div class="card">
+          <h3>gallery tiles.</h3>
+          <p class="muted" style="margin:0 0 var(--s3);font-size:14px">4:5 portrait, 8–16px gaps, ink tag bottom-left.</p>
+          <div class="tiles"><div class="tile"><span class="tag">RAW</span></div><div class="tile"><span class="tag">EDIT</span></div><div class="tile"><span class="tag">REEL</span></div></div>
+        </div>
+        <div class="card">
+          <h3>spacing.</h3>
+          <div class="spacing">
+            <div><b>space-1</b><span>4px</span><i style="width:4px"></i></div>
+            <div><b>space-2</b><span>8px</span><i style="width:8px"></i></div>
+            <div><b>space-3</b><span>16px</span><i style="width:16px"></i></div>
+            <div><b>space-4</b><span>24px</span><i style="width:24px"></i></div>
+            <div><b>space-5</b><span>48px</span><i style="width:48px"></i></div>
+            <div><b>space-6</b><span>96px</span><i style="width:96px;max-width:100%"></i></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>corners.</h3>
+          <div class="stack" style="gap:var(--s3)">
+            <div style="text-align:center;font-size:13px"><div style="width:64px;height:80px;background:var(--stone);border-radius:4px;margin-bottom:6px"></div>media 4</div>
+            <div style="text-align:center;font-size:13px"><div style="width:64px;height:80px;border:1px solid var(--ink);border-radius:12px;margin-bottom:6px"></div>card 12</div>
+            <div style="text-align:center;font-size:13px"><div style="width:96px;height:40px;background:var(--ink);border-radius:999px;margin:20px 0 26px"></div>pill</div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>icons.</h3>
+          <p class="muted" style="margin:0 0 var(--s3);font-size:14px">Thin outline only (Lucide, 1.5px stroke) in ink or ash. Never filled or coloured.</p>
+          <div class="stack" style="gap:var(--s4)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="camera"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="video"><path d="m22 8-6 4 6 4V8z"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="calendar"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-label="arrow"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="block" id="social">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">06 · Social</span>
+        <h2>the <em>post.</em></h2>
+        <p>A huge lowercase statement top-left, the wordmark and @naavcaptured bottom-right, bone ground. Use the ink version sparingly, for announcements.</p>
+      </div>
+      <div class="social">
+        <figure><img src="../assets/social/capturing-in-progress.jpg" alt="Instagram post reading capturing in progress, with the naavcaptured wordmark" style="border-radius:var(--r-media)"><figcaption><b>The original</b>From the launch grid.</figcaption></figure>
+        <figure><div class="post"><span class="stmt">booking 2027 now.</span><span class="sig"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span><small>@naavcaptured</small></span></div><figcaption><b>Template, bone</b>Statement in 2–4 lines. Nunito 900, −6%.</figcaption></figure>
+        <figure><div class="post ink"><span class="stmt">final edits.</span><span class="sig"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span><small>@naavcaptured</small></span></div><figcaption><b>Template, ink</b>Announcements and end cards.</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- FILES -->
+  <section class="block" id="files">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="label">07 · Files</span>
+        <h2>the <em>assets.</em></h2>
+        <p>Everything lives in the website repo under <code>assets/</code>.</p>
+      </div>
+      <div class="files">
+        <div><code>assets/logo/lockup-est-bone.jpg</code><span>Stacked lockup on bone, 1563px</span><span class="muted">JPG</span></div>
+        <div><code>assets/logo/lockup-est-ink.jpg</code><span>Stacked lockup on ink, 1563px</span><span class="muted">JPG</span></div>
+        <div><code>assets/logo/wordmark-bone.jpg</code><span>Wordmark on bone, 1563px</span><span class="muted">JPG</span></div>
+        <div><code>assets/logo/wordmark-white.jpg</code><span>Wordmark on white, 1563px</span><span class="muted">JPG</span></div>
+        <div><code>assets/logo/icon-512.png</code><span>Italic n on ink: app icon, favicon source</span><span class="muted">PNG</span></div>
+        <div><code>assets/social/share.jpg</code><span>Link preview for WhatsApp and Instagram, 1200×630</span><span class="muted">JPG</span></div>
+        <div><code>assets/social/capturing-in-progress.jpg</code><span>Social post reference</span><span class="muted">JPG</span></div>
+      </div>
+      <p class="muted" style="margin-top:var(--s4);font-size:14px">Still needed: SVG or transparent PNG exports of the wordmark and lockup from Canva, for print and sharp headers.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <div class="wrap">
+    <span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span>
+    <p>EST 2025. · London · content, socials, video.</p>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var hex = b.getAttribute('data-hex');
+      var done = function () { b.textContent = 'copied'; setTimeout(function () { b.textContent = hex; }, 1200); };
+      try {
+        navigator.clipboard.writeText(hex).then(done, function () { selectText(b); });
+      } catch (e) { selectText(b); }
+    });
+  });
+  function selectText(n) { var r = document.createRange(); r.selectNodeContents(n); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+</script>
+</body>
+</html>
