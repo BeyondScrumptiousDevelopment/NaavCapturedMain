@@ -14,12 +14,12 @@
     { "label": "Weddings & events", "href": "mailto:hello@naavcaptured.com?subject=Weddings%20%26%20events%20enquiry", "show": true },
     { "label": "Business content", "href": "mailto:hello@naavcaptured.com?subject=Business%20content%20enquiry", "show": true },
     { "label": "Instagram @naavcaptured", "href": "https://www.instagram.com/naavcaptured/", "show": true },
-    { "label": "WhatsApp", "href": "https://wa.me/440000000000", "show": true, "_todo": "Replace 440000000000 with the real number: country code, no plus, no leading zero, e.g. 447700900123." },
-    { "label": "Email", "href": "mailto:hello@naavcaptured.com", "show": true, "_todo": "Confirm the email address." },
+    { "label": "WhatsApp", "href": "https://wa.me/440000000000", "show": false, "_todo": "Hidden until the real number is added: replace 440000000000 (country code, no plus, no leading zero, e.g. 447700900123), then set show to true." },
+    { "label": "Email", "href": "mailto:hello@naavcaptured.com", "show": false, "_todo": "Hidden for now. Confirm the address, then set show to true." },
     { "label": "Client login", "href": "https://portal.naavcaptured.com", "show": false, "_todo": "Set show to true once the client portal is live." }
   ],
 
-  "email": "hello@naavcaptured.com",
+  "email": "",
 
   "recentWork": [
     { "caption": "your day, captured.", "tag": "WEDDING", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
