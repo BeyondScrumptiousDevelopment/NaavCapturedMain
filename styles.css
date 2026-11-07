@@ -4,7 +4,7 @@
    matches the intro video's own background with no visible edge. */
 
 :root {
-  --page: #ECEAE6;      /* measured from the intro video; brand bone is #EFEEEA */
+  --page: #EDEBE7;      /* the intro video as browsers decode it (BT.709); brand bone is #EFEEEA */
   --bone: #EFEEEA;
   --surface: #FFFFFF;
   --ink: #1C1C1C;
@@ -115,6 +115,7 @@ main { display: flex; flex-direction: column; gap: var(--space-5); }
 }
 .tile:nth-child(3n+2) .tag { background: var(--on-ink); color: var(--ink); }
 .tile .card + .tag { display: none; }
+.tile.skel { aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--radius-media); background: var(--bone); }
 
 /* ---------- footer ---------- */
 .foot { margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: var(--space-2); padding-top: var(--space-4); border-top: 1px solid var(--stone); }
@@ -138,7 +139,18 @@ main { display: flex; flex-direction: column; gap: var(--space-5); }
 .intro-lockup .est.on { opacity: 1; transform: none; }
 .intro-lockup .ch { opacity: 0; }
 .intro-lockup .ch.on { opacity: 1; }
-.intro video { width: 100%; height: 100%; object-fit: contain; }
+/* The video is sized to its own 9:16 frame and its edges fade into the page, so no seam shows
+   whatever colour a browser decodes the background as. */
+.intro video {
+  position: absolute; left: 50%; top: 50%;
+  width: min(100vw, 100dvh * 9 / 16); height: min(100dvh, 100vw * 16 / 9);
+  margin-left: calc(min(100vw, 100dvh * 9 / 16) / -2); margin-top: calc(min(100dvh, 100vw * 16 / 9) / -2);
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
+}
 
 .skip {
   position: absolute; left: 50%; transform: translateX(-50%);
@@ -152,14 +164,15 @@ main { display: flex; flex-direction: column; gap: var(--space-5); }
 .skip:hover { background: var(--ink); color: var(--on-ink); }
 
 /* While the intro plays, the page waits underneath; the header wordmark is where the lockup lands. */
-.intro .brand { visibility: hidden; }
+.intro .brand { visibility: hidden; opacity: 0; }
+.intro.video .brand { transition: opacity .4s var(--ease-out); }
 .intro .reveal { opacity: 0; transform: translateY(10px); }
 .intro.revealed .reveal {
   opacity: 1; transform: none;
   transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
   transition-delay: calc(var(--i, 0) * 55ms);
 }
-.intro.landed .brand { visibility: visible; }
+.intro.landed .brand { visibility: visible; opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }

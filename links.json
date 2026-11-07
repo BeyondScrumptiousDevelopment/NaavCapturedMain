@@ -29,5 +29,5 @@
     { "caption": "new menu, new content.", "tag": "BUSINESS", "href": "https://www.instagram.com/naavcaptured/", "image": "" },
     { "caption": "final edits.", "tag": "REEL", "href": "https://www.instagram.com/naavcaptured/", "image": "" }
   ],
-  "_recentWorkHelp": "3 to 6 posts. Put a portrait image (4:5, about 800x1000px) in assets/work/ and write its path in \"image\", and paste the post or reel link in \"href\". With no image, the tile shows the caption as a typeset card."
+  "_recentWorkHelp": "Recent work shows your latest 6 Instagram posts automatically once the live feed is set up (README: Live Instagram feed). This list is only the backup, shown if the feed isn't set up or Instagram is down. For a backup tile with a photo, put a 4:5 image in assets/work/ and write its path in \"image\"."
 }

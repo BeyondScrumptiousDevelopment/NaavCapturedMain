@@ -40,9 +40,11 @@
 
   function tile(item) {
     var li = el('li', { class: 'tile' });
-    var a = el('a', { href: item.href || 'https://www.instagram.com/naavcaptured/', target: '_blank', rel: 'noopener', 'aria-label': item.caption || 'Recent work on Instagram' });
+    var a = el('a', { href: item.href || 'https://www.instagram.com/naavcaptured/', target: '_blank', rel: 'noopener', 'aria-label': item.caption || 'Post on Instagram' });
     if (item.image) {
-      a.appendChild(el('img', { src: item.image, alt: item.caption || '', loading: 'lazy', decoding: 'async', width: 400, height: 500 }));
+      var img = el('img', { src: item.image, alt: item.caption || 'Post on Instagram', loading: 'lazy', decoding: 'async', width: 400, height: 500, referrerpolicy: 'no-referrer' });
+      img.addEventListener('error', function () { li.remove(); });
+      a.appendChild(img);
     } else {
       a.appendChild(el('span', { class: 'card', 'aria-hidden': 'true' },
         '<span>' + esc(item.caption || '') + '</span><span class="mini"><i>naav</i>captured.</span>'));
@@ -50,6 +52,14 @@
     if (item.tag) a.appendChild(el('span', { class: 'tag', 'aria-hidden': 'true' }, esc(item.tag)));
     li.appendChild(a);
     return li;
+  }
+
+  function fillTiles(items) {
+    var tiles = document.getElementById('tiles');
+    tiles.textContent = '';
+    tiles.removeAttribute('aria-busy');
+    items.slice(0, 6).forEach(function (w) { tiles.appendChild(tile(w)); });
+    tiles.closest('.work').hidden = !tiles.children.length;
   }
 
   function render(data) {
@@ -65,11 +75,6 @@
       nav.appendChild(pill(l, i++, false));
     });
 
-    var tiles = document.getElementById('tiles');
-    tiles.textContent = '';
-    (data.recentWork || []).slice(0, 6).forEach(function (w) { tiles.appendChild(tile(w)); });
-    if (!tiles.children.length) tiles.closest('.work').hidden = true;
-
     if (data.email) {
       var m = document.getElementById('mail');
       m.textContent = data.email;
@@ -77,10 +82,24 @@
     }
   }
 
-  fetch('links.json', { cache: 'no-cache' })
+  // Recent work: the live Instagram feed (functions/api/instagram.js) first; the
+  // hand-picked recentWork list in links.json only if the feed isn't set up or is down.
+  var linksReq = fetch('links.json', { cache: 'no-cache' })
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+
+  linksReq.then(render).catch(function () { /* keep the Instagram fallback already in the page */ });
+
+  fetch('/api/instagram')
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(render)
-    .catch(function () { /* keep the Instagram fallback already in the page */ });
+    .then(function (feed) {
+      if (!feed.posts || !feed.posts.length) throw new Error('empty');
+      fillTiles(feed.posts.map(function (p) {
+        return { href: p.href, image: p.image, caption: p.caption, tag: p.type === 'VIDEO' ? 'REEL' : '' };
+      }));
+    })
+    .catch(function () {
+      linksReq.then(function (d) { fillTiles(d.recentWork || []); }).catch(function () { fillTiles([]); });
+    });
 
   /* ---------------- intro ---------------- */
 
@@ -163,22 +182,27 @@
     later(land, HOLD_UNTIL);
   }
 
+  // Where the wordmark sits in the last frame, as fractions of the 1080×1920 frame
+  // (measured from the master: x 198–894, y 897–1004).
+  var VIDEO_MARK = { w: 1080, h: 1920, x0: 0.1833, x1: 0.8278, y0: 0.4672, y1: 0.5229 };
+  var LOCKUP_AT = 2.6;   // seconds: the lockup has fully landed in the video by here
+
   function playVideo(base) {
     lockup.hidden = true;
-    var portrait = window.innerHeight >= window.innerWidth;
-    var name = base + (portrait ? '-portrait' : '-landscape');
-    var v = el('video', { muted: '', playsinline: '', autoplay: '', preload: 'auto', poster: base + '-poster.jpg' });
+    root.classList.add('video');
+    var name = base + '-portrait';
+    var v = el('video', { muted: '', playsinline: '', 'webkit-playsinline': '', autoplay: '', preload: 'auto', disablepictureinpicture: '' });
     v.muted = true;
     v.appendChild(el('source', { src: name + '.webm', type: 'video/webm' }));
     v.appendChild(el('source', { src: name + '.mp4', type: 'video/mp4' }));
     stage.insertBefore(v, skip);
 
-    var fallback = function () { if (done) return; v.remove(); lockup.hidden = false; landHandler = land; playTyped(); };
+    var fallback = function () { if (done) return; v.remove(); root.classList.remove('video'); lockup.hidden = false; landHandler = land; playTyped(); };
     v.lastElementChild.addEventListener('error', fallback);
     v.addEventListener('ended', landVideo);
     var p = v.play();
     if (p && p.catch) p.catch(fallback);
-    later(landVideo, 8000); // safety net if 'ended' never fires
+    later(landVideo, 9000); // safety net if 'ended' never fires
 
     function landVideo() {
       if (done) return;
@@ -186,15 +210,32 @@
       timers.forEach(clearTimeout);
       rememberSeen();
       skip.classList.remove('on');
-      root.classList.add('revealed');
-      root.classList.add('landed');
+      // Skipped before the lockup formed: jump to the finished lockup so it can move into the header.
+      if (v.currentTime < LOCKUP_AT && v.duration) { try { v.currentTime = v.duration - 0.05; } catch (e) {} }
+      v.pause();
+
+      var m = VIDEO_MARK;
+      var R = v.getBoundingClientRect();
+      var k0 = Math.min(R.width / m.w, R.height / m.h);           // object-fit: contain
+      var dw = m.w * k0, dh = m.h * k0;
+      var ox = (R.width - dw) / 2, oy = (R.height - dh) / 2;
+      var px = ox + dw * (m.x0 + m.x1) / 2, py = oy + dh * (m.y0 + m.y1) / 2;
+      var markW = dw * (m.x1 - m.x0);
       var to = brand.getBoundingClientRect();
-      var dy = to.top + to.height / 2 - window.innerHeight / 2;
-      var anim = v.animate
-        ? v.animate([{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(' + dy + 'px) scale(.35)' }],
-            { duration: LAND_MS, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'forwards' })
-        : null;
-      if (anim) anim.onfinish = finish; else finish();
+      var k = to.width / markW;
+      var tx = (to.left + to.width / 2) - R.left - k * px;
+      var ty = (to.top + to.height / 2) - R.top - k * py;
+
+      if (!v.animate || !R.width) { root.classList.add('revealed'); return finish(); }
+      stage.classList.add('clear');
+      v.style.transformOrigin = '0 0';
+      var anim = v.animate([
+        { transform: 'none', opacity: 1 },
+        { transform: 'translate(' + tx * 0.6 + 'px,' + ty * 0.6 + 'px) scale(' + (1 + (k - 1) * 0.6) + ')', opacity: 1, offset: 0.6 },
+        { transform: 'translate(' + tx + 'px,' + ty + 'px) scale(' + k + ')', opacity: 0 }
+      ], { duration: LAND_MS, easing: 'cubic-bezier(.7,0,.2,1)', fill: 'forwards' });
+      later(function () { root.classList.add('revealed'); root.classList.add('landed'); }, LAND_MS * 0.5);
+      anim.onfinish = finish;
     }
     landHandler = landVideo;
   }

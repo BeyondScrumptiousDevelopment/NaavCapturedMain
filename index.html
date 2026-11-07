@@ -6,7 +6,7 @@
 <title>naavcaptured — content, socials, video. London</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="naavcaptured is a London content studio: photo, video and social content for weddings, events and businesses. Est 2025.">
-<meta name="theme-color" content="#ECEAE6">
+<meta name="theme-color" content="#EDEBE7">
 <link rel="canonical" href="https://naavcaptured.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://naavcaptured.com/">
@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800;6..12,900&family=Tinos:ital@1&display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="preload" href="assets/video/intro-portrait.mp4" as="video" type="video/mp4">
 <script>
   /* Decide before first paint whether the intro plays, so the page never flashes. */
   (function () {
@@ -34,9 +35,9 @@
 </head>
 <body>
 
-<!-- Intro: types "naav" then "captured.", lands on the EST 2025. lockup, then the lockup moves into the header.
-     To use the exported video instead, add data-video="assets/video/intro" to this element (see README). -->
-<div class="intro-stage" id="intro" aria-hidden="true">
+<!-- Intro: plays the logo animation (assets/video/intro-*), then the lockup moves into the header.
+     Remove data-video to use the coded version instead; it is also the fallback if the video can't play. -->
+<div class="intro-stage" id="intro" aria-hidden="true" data-video="assets/video/intro">
   <div class="intro-lockup" id="introLockup">
     <span class="wm" id="introMark"><span class="naav" data-type="naav"></span><span class="captured" data-type="captured."></span></span>
     <span class="est" id="introEst">EST 2025.</span>
@@ -62,7 +63,7 @@
         <h2 id="workTitle">recent <em>work.</em></h2>
         <a class="work-more" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">@naavcaptured</a>
       </div>
-      <ul class="tiles" id="tiles"></ul>
+      <ul class="tiles" id="tiles" aria-busy="true"><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li></ul>
     </section>
   </main>
 
