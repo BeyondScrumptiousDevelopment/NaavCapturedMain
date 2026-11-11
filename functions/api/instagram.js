@@ -86,10 +86,6 @@ async function findInstagramAccount(token) {
       const pages = (await graph(`${FB_GRAPH}/me/accounts?fields=instagram_business_account`, token)).data || [];
       return pages.map((p) => p.instagram_business_account?.id).find(Boolean);
     },
-    async () => {
-      const me = await graph(`${FB_GRAPH}/me?fields=id,username`, token);
-      return me.username ? me.id : null;   // the token already belongs to the Instagram account
-    }
   ];
   const problems = [];
   for (const attempt of tries) {
@@ -98,8 +94,15 @@ async function findInstagramAccount(token) {
       if (id) return id;
     } catch (e) { problems.push(e.message); }
   }
-  throw new Error('Could not find the Instagram account for this token. Set INSTAGRAM_USER_ID in Cloudflare. '
-    + (problems.length ? 'Meta said: ' + problems.join(' | ') : ''));
+  let granted = '';
+  try {
+    const perms = (await graph(`${FB_GRAPH}/me/permissions`, token)).data || [];
+    granted = perms.filter((p) => p.status === 'granted').map((p) => p.permission).join(', ');
+  } catch (e) { granted = 'unknown (' + e.message + ')'; }
+  throw new Error('Meta lists no Instagram account for this token. Set INSTAGRAM_USER_ID in Cloudflare, '
+    + 'or add the business_management permission to the login configuration and generate a new token. '
+    + 'Token permissions: ' + (granted || 'none') + '.'
+    + (problems.length ? ' Meta said: ' + problems.join(' | ') : ''));
 }
 
 /* ---------- shared ---------- */
