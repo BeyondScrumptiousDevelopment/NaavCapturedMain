@@ -34,12 +34,14 @@ The page background is `#EDEBE7`, the colour browsers render the animation's bac
 Recent work shows the latest 6 posts from @naavcaptured, and each tile opens that post on Instagram. New posts appear on the site within 15 minutes. It uses Instagram's official API through a free Cloudflare function, so it needs a one-time setup:
 
 1. **Account:** @naavcaptured must be a Professional account (Business or Creator). In the Instagram app: Settings → Account type and tools → Switch to professional account.
-2. **App:** at developers.facebook.com, choose **Create app** → **Other** → **Business**, then add the **Instagram** product and pick **API setup with Instagram login**.
-3. **Token:** under **Generate access tokens**, add @naavcaptured, log in and copy the token. This is a long-lived token (valid 60 days).
-4. **Cloudflare:** in your Pages project go to **Settings → Variables and Secrets**, add a secret named `INSTAGRAM_TOKEN` and paste the token. Redeploy.
-5. **Keep it alive (recommended):** go to **Storage & Databases → KV**, create a namespace (e.g. `naavcaptured-ig`). Then in the Pages project open **Settings → Bindings → KV namespace** and bind it with the variable name `IG`. The token then renews itself every week. Without this, repeat step 3 and 4 every 60 days.
+2. **App:** at developers.facebook.com, choose **Create app** and pick the use case **Manage messaging & content on Instagram**.
+3. **Token:** open **Use cases → Customize** on that use case. Newer apps only offer **API setup with Unified login**; older ones offer **API setup with Instagram login**. Either works. Find **Generate access tokens**, add @naavcaptured and copy the token.
+   - A token starting `IG` is an Instagram login token (expires after 60 days, see step 5).
+   - A token starting `EAA` is a Unified login (Facebook) token. The site finds the Instagram account from it. If `/api/instagram` says it can't, also add a variable `INSTAGRAM_USER_ID` with the account's numeric ID.
+4. **Cloudflare:** in your Pages project go to **Settings → Variables and Secrets**, add a secret named `INSTAGRAM_TOKEN` and paste the token. Then **Deployments → Retry deployment**.
+5. **Instagram login tokens only:** go to **Storage & Databases → KV**, create a namespace (e.g. `naavcaptured-ig`), then in the Pages project **Settings → Bindings → KV namespace**, bind it as `IG`. The token then renews itself weekly. Without it, repeat steps 3–4 every 60 days.
 
-Check it's working at `https://naavcaptured.com/api/instagram`. Until it's set up, Recent work shows the backup tiles from `links.json`.
+Check it's working at `https://naavcaptured.com/api/instagram`: it lists your posts, or says in plain words what Meta rejected. Until it's set up, Recent work shows the backup tiles from `links.json`.
 
 ## Deploying to Cloudflare (free)
 
