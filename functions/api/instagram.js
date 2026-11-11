@@ -23,14 +23,22 @@ const FIELDS = 'id,caption,media_type,media_url,thumbnail_url,permalink,timestam
 const CACHE_SECONDS = 900;
 const REFRESH_AFTER_MS = 7 * 24 * 60 * 60 * 1000;
 
-export async function onRequestGet({ request, env, waitUntil }) {
+export async function onRequestGet(context) {
+  try {
+    return await feed(context);
+  } catch (e) {
+    return problem('Feed crashed: ' + String(e && e.message || e));
+  }
+}
+
+async function feed({ request, env, waitUntil }) {
   const cache = caches.default;
   const cacheKey = new Request(new URL('/api/instagram', request.url).toString());
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
   const token = await currentToken(env, waitUntil);
-  if (!token) return json({ error: 'Instagram feed is not set up yet: no INSTAGRAM_TOKEN.' }, 503);
+  if (!token) return problem('Instagram feed is not set up yet: no INSTAGRAM_TOKEN.');
 
   let items;
   try {
@@ -39,7 +47,7 @@ export async function onRequestGet({ request, env, waitUntil }) {
       : await facebookMedia(token, env);
     items = items.data || [];
   } catch (e) {
-    return json({ error: String(e.message || e) }, 502);
+    return problem(String(e.message || e));
   }
 
   const posts = items
@@ -53,6 +61,7 @@ export async function onRequestGet({ request, env, waitUntil }) {
     .filter((p) => p.href && p.image)
     .slice(0, 6);
 
+  if (!posts.length) return problem(items.length ? 'Instagram sent posts but none had an image link.' : 'Instagram sent no posts for this account.');
   const res = json({ posts }, 200, `public, max-age=${CACHE_SECONDS}`);
   waitUntil(cache.put(cacheKey, res.clone()));
   return res;
@@ -132,6 +141,12 @@ function firstLine(caption) {
   if (!caption) return '';
   const line = caption.split('\n')[0].trim();
   return line.length > 120 ? line.slice(0, 117) + '…' : line;
+}
+
+// Answer 200 with an explanation so Cloudflare doesn't swap it for a bare error page;
+// the page treats an empty list as "use the backup tiles".
+function problem(message) {
+  return json({ posts: [], error: message }, 200);
 }
 
 function json(body, status, cacheControl = 'no-store') {
