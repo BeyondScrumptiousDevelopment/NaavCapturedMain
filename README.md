@@ -7,6 +7,8 @@ Version 1 of the naavcaptured website: the logo intro plays, then the page settl
 | `index.html`, `styles.css`, `app.js` | The link page and intro |
 | `links.json` | **Edit this** to change the links, tagline and recent work |
 | `privacy.html` | Privacy page linked from the footer |
+| `websites/`, `websites.css`, `websites.js` | The websites service page (/websites), its enquiry form and thank-you page (/websites/thanks) |
+| `assets/websites/` | Screenshots for the websites page's recent-work cards |
 | `functions/api/instagram.js` | Live Instagram feed for Recent work (runs on Cloudflare) |
 | `assets/logo/` | Logo files and icons |
 | `assets/social/` | Share preview image, social post reference |
@@ -42,6 +44,23 @@ Recent work shows the latest 6 posts from @naavcaptured, and each tile opens tha
 5. **Instagram login tokens only:** go to **Storage & Databases → KV**, create a namespace (e.g. `naavcaptured-ig`), then in the Pages project **Settings → Bindings → KV namespace**, bind it as `IG`. The token then renews itself weekly. Without it, repeat steps 3–4 every 60 days.
 
 Check it's working at `https://naavcaptured.com/api/instagram`: it lists your posts, or says in plain words what Meta rejected. Until it's set up, Recent work shows the backup tiles from `links.json`.
+
+## Websites page
+
+`naavcaptured.com/websites` sells website builds: hero, intro, recent work, packages, how it works, FAQ and an enquiry form. The home page links to it under the tagline, and the footer has a "websites" link. The copy comes from the "naavcaptured.com — Websites section & forms" doc.
+
+**Connecting the enquiry form (Formspree, free):**
+
+1. Create a free account at formspree.io with your business email, then add a form called "websites enquiry".
+2. Copy the form's endpoint, e.g. `https://formspree.io/f/abcdwxyz`.
+3. In `websites/index.html`, replace `FORM_ID` in `action="https://formspree.io/f/FORM_ID"` with your ID.
+4. Send a test enquiry from your phone and check the email arrives.
+
+Until the ID is in, the form shows a friendly "please try again, or message us on Instagram" message instead of sending. Spam protection is Formspree's own filter plus a hidden `_gotcha` field. The free plan covers 50 enquiries a month.
+
+**Swapping a recent-work placeholder:** put a 16:10 screenshot (about 1200×750) in `assets/websites/`, then in `websites/index.html` replace that card's `<span class="shot shot-ph">` with an `<img class="shot" ...>` and change its `<div class="site-card">` to an `<a href="...">` with the site's link. The naavcaptured card shows how.
+
+**Changing prices or copy:** edit the text directly in `websites/index.html`. Prices also appear in the form's package options.
 
 ## Deploying to Cloudflare (free)
 

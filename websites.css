@@ -1,0 +1,98 @@
+/* naavcaptured.com/websites — builds on styles.css (same tokens, wordmark, pills, footer).
+   Layout: a wider single column (max 720px) so the packages and form have room; still one
+   column on phones. */
+
+.page.wide { max-width: calc(720px + 2 * var(--space-4)); padding-block: var(--space-4); gap: var(--space-5); }
+
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+.topbar .home { text-decoration: none; font-size: 24px; }
+.topbar-cta { font-size: 14px; font-weight: 700; text-decoration: none; border: 1.5px solid var(--ink); border-radius: var(--radius-pill); padding: 6px 16px; }
+.topbar-cta:hover { background: var(--ink); color: var(--on-ink); }
+
+.ws { display: flex; flex-direction: column; gap: calc(var(--space-5) + var(--space-3)); }
+.ws h2 { margin: 0 0 var(--space-4); font-size: clamp(30px, 7vw, 40px); line-height: 1; font-weight: 900; letter-spacing: -.045em; text-wrap: balance; }
+.ws h2 em, .hero h1 em { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.01em; font-size: 1.08em; }
+.ws p { margin: 0; }
+.lede { font-size: 18px; line-height: 27px; font-weight: 500; max-width: 46ch; text-wrap: pretty; }
+
+/* hero */
+.hero { display: flex; flex-direction: column; gap: var(--space-4); padding-top: var(--space-5); }
+.hero h1 { margin: 0; font-size: clamp(48px, 13vw, 88px); line-height: .92; font-weight: 900; letter-spacing: -.055em; text-wrap: balance; }
+.hero-btn { align-self: flex-start; gap: var(--space-4); margin: 0; }
+
+/* intro */
+.intro { display: grid; gap: var(--space-3); border-top: 1px solid var(--ink); padding-top: var(--space-4); }
+.intro .big { font-size: clamp(22px, 4.6vw, 28px); line-height: 1.25; font-weight: 800; letter-spacing: -.03em; max-width: 28ch; text-wrap: balance; }
+.intro p:not(.big) { max-width: 60ch; color: var(--ink); }
+
+/* recent work */
+.sites { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-4) var(--space-3); }
+.site a, .site-card { display: flex; flex-direction: column; gap: 6px; text-decoration: none; color: var(--ink); min-width: 0; }
+.shot { display: block; width: 100%; max-width: 100%; aspect-ratio: 16 / 10; height: auto; object-fit: cover; object-position: top center; border-radius: var(--radius-media); background: var(--bone); border: 1px solid var(--stone); margin-bottom: 6px; }
+.site a:hover .shot { border-color: var(--ink); }
+.shot-ph { display: grid; place-items: center; font-weight: 900; font-size: clamp(22px, 5vw, 30px); letter-spacing: -.05em; padding: var(--space-3); text-align: center; }
+.shot-ph.ink { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.site-name { font-weight: 800; font-size: 17px; letter-spacing: -.02em; }
+.site-line { font-size: 14px; line-height: 20px; color: var(--ash); }
+
+/* packages */
+.pkgs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: var(--space-3); }
+.pkg { background: var(--surface); border: 1px solid var(--stone); border-radius: var(--radius-card); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
+.pkg-main { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.pkg-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); }
+.pkg h3 { margin: 0; font-size: 20px; line-height: 26px; font-weight: 800; letter-spacing: -.02em; }
+.price { font-weight: 900; font-size: 28px; letter-spacing: -.04em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.price small { font-size: 13px; font-weight: 700; letter-spacing: 0; opacity: .75; }
+.pkg p:not(.price) { font-size: 15px; line-height: 22px; }
+.sub { margin: var(--space-4) 0 var(--space-3); font-size: 16px; font-weight: 800; letter-spacing: -.01em; color: var(--ash); }
+.addons { margin-top: var(--space-4) !important; font-weight: 600; }
+
+/* how it works: a real sequence, so the numbers carry meaning */
+.steps { list-style: none; counter-reset: step; margin: 0; padding: 0; display: grid; gap: 0; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: var(--space-3); padding-block: var(--space-3); border-top: 1px solid var(--stone); font-size: 16px; line-height: 24px; }
+.steps li:last-child { border-bottom: 1px solid var(--stone); }
+.steps li::before { content: counter(step); font-weight: 900; font-size: 22px; line-height: 24px; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.steps b { font-weight: 800; }
+
+/* faq */
+.faq { display: grid; border-top: 1px solid var(--stone); }
+.faq details { border-bottom: 1px solid var(--stone); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding-block: var(--space-3); font-weight: 700; font-size: 16px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-weight: 400; font-size: 24px; line-height: 1; transition: transform .2s var(--ease-out); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: var(--space-3); max-width: 60ch; color: var(--ink); }
+
+/* enquiry form */
+.enquire { display: flex; flex-direction: column; gap: var(--space-3); scroll-margin-top: var(--space-4); }
+.enquire h2 { margin-bottom: 0; }
+.form { display: flex; flex-direction: column; gap: var(--space-4); background: var(--surface); border: 1px solid var(--stone); border-radius: var(--radius-card); padding: var(--space-4); margin-top: var(--space-2); }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: var(--space-4) var(--space-3); }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.field label, .field legend { font-size: 14px; line-height: 20px; font-weight: 700; padding: 0; margin-bottom: 2px; }
+.opt { font-weight: 500; color: var(--ash); }
+.input { font: inherit; font-size: 16px; width: 100%; min-height: 48px; padding: 10px var(--space-3); border-radius: var(--radius-card); border: 1px solid var(--stone); background: var(--surface); color: var(--ink); }
+textarea.input { resize: vertical; min-height: 110px; line-height: 24px; }
+select.input { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C1C1C' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 18px 18px; padding-right: 44px; }
+.input::placeholder { color: var(--ash); opacity: .8; }
+.input:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-color: var(--ink); }
+.input[aria-invalid="true"] { border-color: #A3412F; }
+.choices { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.choice { position: relative; display: inline-flex; }
+.choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.choice span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--space-3); border: 1.5px solid var(--stone); border-radius: var(--radius-pill); font-size: 15px; font-weight: 600; cursor: pointer; transition: background-color .15s, border-color .15s, color .15s; }
+.choice input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.choice input:focus-visible + span { outline: 2px solid var(--ink); outline-offset: 2px; }
+fieldset[aria-invalid="true"] .choice span { border-color: #A3412F; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.submit { align-self: stretch; margin: 0; cursor: pointer; font: inherit; font-size: 17px; font-weight: 700; border: 0; }
+.submit[disabled] { opacity: .6; cursor: progress; }
+.form-error { margin: 0; padding: 12px var(--space-3); border-radius: var(--radius-card); background: var(--status-tint, #E4E2DC); color: #A3412F; font-size: 14px; line-height: 20px; font-weight: 600; }
+.fine { font-size: 13px !important; line-height: 18px; color: var(--ash); }
+.fine a { color: inherit; text-underline-offset: 3px; }
+
+/* thanks page */
+.thanks { display: flex; flex-direction: column; gap: var(--space-4); padding-block: var(--space-6); }
+.thanks h1 { margin: 0; font-size: clamp(48px, 13vw, 80px); line-height: .95; font-weight: 900; letter-spacing: -.055em; }
+.thanks h1 em { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.01em; }
+.thanks .pill { align-self: flex-start; margin: 0; gap: var(--space-4); }
