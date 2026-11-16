@@ -14,19 +14,24 @@
 <meta property="og:description" content="Clean, fast websites for small businesses and wedding suppliers. Built in London. Live in weeks, not months.">
 <meta property="og:image" content="https://naavcaptured.com/assets/social/share.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="../assets/logo/favicon-32.png">
-<link rel="apple-touch-icon" href="../assets/logo/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800;6..12,900&family=Tinos:ital@1&display=swap">
-<link rel="stylesheet" href="../styles.css">
-<link rel="stylesheet" href="../websites.css">
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
 <div class="page wide">
   <header class="topbar">
-    <a class="home" href="../" aria-label="naavcaptured home"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></a>
-    <a class="topbar-cta" href="#enquire">enquire</a>
+    <a class="home" href="/" aria-label="naavcaptured home"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#services">services</a>
+      <a href="/#work">work</a>
+      <a href="/websites/" aria-current="page">websites</a>
+      <a class="topbar-cta" href="#enquire">enquire</a>
+    </nav>
   </header>
 
   <main class="ws">
@@ -45,12 +50,12 @@
 
     <!-- 3. Recent work. To swap a placeholder: put a 16:10 screenshot (about 1200×750) in
          assets/websites/, replace the <span class="shot-ph"> with an <img>, and set the link. -->
-    <section aria-labelledby="workTitle">
+    <section id="work" aria-labelledby="workTitle">
       <h2 id="workTitle">recent <em>work.</em></h2>
       <ul class="sites">
         <li class="site">
-          <a href="https://naavcaptured.com" rel="noopener">
-            <img class="shot" src="../assets/websites/naavcaptured.jpg" alt="The naavcaptured link page" width="1200" height="750" loading="lazy">
+          <a href="/links">
+            <img class="shot" src="/assets/websites/naavcaptured.jpg" alt="The naavcaptured link page" width="1200" height="750" loading="lazy">
             <span class="site-name">naavcaptured</span>
             <span class="site-line">content studio. logo animation and link page.</span>
           </a>
@@ -136,21 +141,21 @@
       <p class="lede">tell us a little about your business. we'll reply within 2 working days.</p>
 
       <!-- Formspree: replace FORM_ID with the ID from your Formspree form (formspree.io/f/<id>). -->
-      <form class="form" id="enquiryForm" action="https://formspree.io/f/FORM_ID" method="POST" novalidate>
+      <form class="form" id="enquiryForm" action="https://formspree.io/f/FORM_ID" method="POST" data-formspree data-thanks="/websites/thanks" novalidate>
         <input type="hidden" name="_subject" value="new website enquiry">
         <div class="hp" aria-hidden="true"><label for="f-gotcha">leave this empty</label><input type="text" id="f-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></div>
 
         <div class="row2">
-          <div class="field"><label for="f-name">your name</label><input class="input" id="f-name" name="name" type="text" autocomplete="name" required></div>
-          <div class="field"><label for="f-business">business name</label><input class="input" id="f-business" name="business" type="text" autocomplete="organization" required></div>
+          <div class="field"><label for="f-name">your name</label><input class="input" id="f-name" name="name" type="text" autocomplete="name" required data-msg="please add your name."></div>
+          <div class="field"><label for="f-business">business name</label><input class="input" id="f-business" name="business" type="text" autocomplete="organization" required data-msg="please add your business name."></div>
         </div>
         <div class="row2">
-          <div class="field"><label for="f-email">email</label><input class="input" id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-email">email</label><input class="input" id="f-email" name="email" type="email" autocomplete="email" required data-msg="please add your email so we can reply."></div>
           <div class="field"><label for="f-phone">phone <span class="opt">optional</span></label><input class="input" id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
         </div>
-        <div class="field"><label for="f-what">what does your business do?</label><input class="input" id="f-what" name="business_type" type="text" placeholder="e.g. florist, café, wedding venue" required></div>
+        <div class="field"><label for="f-what">what does your business do?</label><input class="input" id="f-what" name="business_type" type="text" placeholder="e.g. florist, café, wedding venue" required data-msg="please tell us what your business does."></div>
 
-        <fieldset class="field">
+        <fieldset class="field" data-msg="please say whether you have a website now.">
           <legend>do you have a website now?</legend>
           <div class="choices">
             <label class="choice"><input type="radio" name="current_site" value="no" required><span>no</span></label>
@@ -158,9 +163,9 @@
             <label class="choice"><input type="radio" name="current_site" value="yes, it needs a full rebuild"><span>yes, it needs a full rebuild</span></label>
           </div>
         </fieldset>
-        <div class="field" id="urlField" hidden><label for="f-url">current website link</label><input class="input" id="f-url" name="current_site_link" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="field" id="urlField" data-show-when="current_site=yes" hidden><label for="f-url">current website link</label><input class="input" id="f-url" name="current_site_link" type="url" inputmode="url" placeholder="https://"></div>
 
-        <fieldset class="field">
+        <fieldset class="field" data-msg="please pick a package, or &quot;not sure yet&quot;.">
           <legend>which package interests you?</legend>
           <div class="choices">
             <label class="choice"><input type="radio" name="package" value="starter £300" required><span>starter £300</span></label>
@@ -179,7 +184,7 @@
         </fieldset>
 
         <div class="field"><label for="f-when">when would you like it live?</label>
-          <select class="input" id="f-when" name="timeline" required>
+          <select class="input" id="f-when" name="timeline" required data-msg="please say when you would like it live.">
             <option value="" selected disabled>choose one</option>
             <option>asap</option>
             <option>within a month</option>
@@ -190,18 +195,18 @@
 
         <div class="field"><label for="f-more">anything else? <span class="opt">optional</span></label><textarea class="input" id="f-more" name="message" rows="4"></textarea></div>
 
-        <p class="form-error" id="formError" role="alert" hidden></p>
-        <button class="pill pill-primary submit" id="submitBtn" type="submit"><span>send enquiry</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
-        <p class="fine">by sending this, you agree we can contact you about your enquiry. see our <a href="../privacy.html">privacy policy</a>.</p>
+        <p class="form-error" role="alert" hidden></p>
+        <button class="pill pill-primary submit" type="submit"><span>send enquiry</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        <p class="fine">by sending this, you agree we can contact you about your enquiry. see our <a href="/privacy">privacy policy</a>.</p>
       </form>
     </section>
   </main>
 
   <footer class="foot">
     <span class="wm wm-sm"><span class="naav">naav</span><span class="captured">captured.</span></span>
-    <p class="legal">© 2026 naavcaptured · <a href="../">home</a> · <a href="../privacy.html">privacy</a></p>
+    <p class="legal">© 2026 naavcaptured · <a href="/">home</a> · <a href="/links">links</a> · <a href="/privacy">privacy</a></p>
   </footer>
 </div>
-<script src="../websites.js" defer></script>
+<script src="/site.js" defer></script>
 </body>
 </html>

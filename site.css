@@ -1,6 +1,6 @@
-/* naavcaptured.com/websites — builds on styles.css (same tokens, wordmark, pills, footer).
-   Layout: a wider single column (max 720px) so the packages and form have room; still one
-   column on phones. */
+/* naavcaptured.com studio pages (home, /websites, thanks) — builds on styles.css (same tokens,
+   wordmark, pills, footer). The links page (/links) uses styles.css alone.
+   Layout: a wider single column (max 720px, 960px for the home grid sections); one column on phones. */
 
 .page.wide { max-width: calc(720px + 2 * var(--space-4)); padding-block: var(--space-4); gap: var(--space-5); }
 
@@ -96,3 +96,50 @@ fieldset[aria-invalid="true"] .choice span { border-color: #A3412F; }
 .thanks h1 { margin: 0; font-size: clamp(48px, 13vw, 80px); line-height: .95; font-weight: 900; letter-spacing: -.055em; }
 .thanks h1 em { font-family: var(--font-serif); font-weight: 400; letter-spacing: -.01em; }
 .thanks .pill { align-self: flex-start; margin: 0; gap: var(--space-4); }
+
+/* ---------- studio home ---------- */
+.nav { display: flex; align-items: center; gap: var(--space-4); }
+.nav a { font-size: 14px; font-weight: 700; text-decoration: none; color: var(--ash); }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--ink); }
+.nav a.topbar-cta { color: var(--ink); }
+.nav a.topbar-cta:hover { color: var(--on-ink); }
+@media (max-width: 560px) {
+  .topbar { flex-wrap: wrap; row-gap: var(--space-2); }
+  .nav { gap: var(--space-3); }
+  .nav a:not(.topbar-cta) { font-size: 13px; }
+}
+
+.eyebrow { margin: 0; font-size: 12px; line-height: 16px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ash); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.hero-actions .pill { margin: 0; }
+
+.services { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: var(--space-3); }
+.service { background: var(--surface); border: 1px solid var(--stone); border-radius: var(--radius-card); padding: var(--space-4); display: flex; flex-direction: column; gap: var(--space-3); min-width: 0; }
+.service h3 { margin: 0; font-size: 22px; line-height: 26px; font-weight: 900; letter-spacing: -.035em; }
+.service p { font-size: 15px; line-height: 22px; }
+.service ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14px; line-height: 20px; }
+.service li { padding-left: 18px; position: relative; }
+.service li::before { content: ""; position: absolute; left: 0; top: 10px; width: 9px; height: 1.5px; background: currentColor; }
+.service-link { margin-top: auto; align-self: flex-start; font-size: 14px; font-weight: 800; color: inherit; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 4px; }
+.service-link::after { content: " →"; }
+.service-ink { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-3); margin-bottom: var(--space-4); }
+.sec-head h2 { margin: 0; }
+.more { font-size: 14px; font-weight: 700; color: var(--ash); text-decoration: none; }
+.more:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
+.feed { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.feed li { min-width: 0; }
+.feed a { position: relative; display: block; aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--radius-media); overflow: hidden; background: var(--bone); }
+.feed img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: transform .5s var(--ease-out); }
+.feed a:hover img { transform: scale(1.03); }
+.feed .skel { aspect-ratio: 4 / 5; border-radius: var(--radius-media); background: var(--bone); }
+.feed .tag { position: absolute; left: 6px; bottom: 6px; font-size: 9px; line-height: 14px; font-weight: 800; letter-spacing: .08em; padding: 1px 7px; border-radius: var(--radius-pill); background: var(--ink); color: var(--on-ink); }
+.feed li:only-child { grid-column: span 1; }
+.feed-note { margin-top: var(--space-3) !important; font-size: 14px; color: var(--ash); }
+.feed-note a { color: var(--ink); text-underline-offset: 3px; }
+
+.site-foot { gap: var(--space-3); }
+.foot-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2) var(--space-4); }
+.foot-nav a { font-size: 14px; font-weight: 700; text-decoration: none; }
+.foot-nav a:hover { text-decoration: underline; text-underline-offset: 4px; }

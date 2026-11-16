@@ -3,81 +3,170 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>naavcaptured — content, socials, video. London</title>
+<title>naavcaptured — social media, branding, websites and ugc content. London</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="naavcaptured is a London content studio: photo, video and social content for weddings, events and businesses. Est 2025.">
+<meta name="description" content="naavcaptured is a London studio for small businesses: UGC and UGC-style content shoots, social media management, branding and website building.">
 <meta name="theme-color" content="#EDEBE7">
 <link rel="canonical" href="https://naavcaptured.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://naavcaptured.com/">
-<meta property="og:title" content="naavcaptured — content, socials, video. London">
-<meta property="og:description" content="Photo, video and social content for weddings, events and businesses. London, est 2025.">
+<meta property="og:title" content="naavcaptured — social media, branding, websites and ugc content">
+<meta property="og:description" content="A London studio for small businesses. UGC-style content shoots, social media management, branding and websites. Est 2025.">
 <meta property="og:image" content="https://naavcaptured.com/assets/social/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" sizes="32x32" href="assets/logo/favicon-32.png">
-<link rel="apple-touch-icon" href="assets/logo/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/logo/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,700;6..12,800;6..12,900&family=Tinos:ital@1&display=swap">
-<link rel="stylesheet" href="styles.css">
-<link rel="preload" href="assets/video/intro-portrait.mp4" as="video" type="video/mp4">
-<script>
-  /* Decide before first paint whether the intro plays, so the page never flashes. */
-  (function () {
-    var d = document.documentElement, seen = false;
-    try { seen = sessionStorage.getItem('nc-intro-seen') === '1'; } catch (e) {}
-    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!seen && !reduce && location.hash !== '#links') d.classList.add('intro');
-  })();
-</script>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/site.css">
 </head>
 <body>
-
-<!-- Intro: plays the logo animation (assets/video/intro-*), then the lockup moves into the header.
-     Remove data-video to use the coded version instead; it is also the fallback if the video can't play. -->
-<div class="intro-stage" id="intro" aria-hidden="true" data-video="assets/video/intro">
-  <div class="intro-lockup" id="introLockup">
-    <span class="wm" id="introMark"><span class="naav" data-type="naav"></span><span class="captured" data-type="captured."></span></span>
-    <span class="est" id="introEst">EST 2025.</span>
-  </div>
-  <button class="skip" id="skip" type="button" tabindex="-1">skip</button>
-</div>
-
-<div class="page">
-  <header class="masthead">
-    <h1 class="brand" id="brand"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></h1>
-    <p class="tagline reveal" id="tagline" style="--i:1">content, socials, video. for weddings, events and businesses.</p>
-    <p class="also reveal" style="--i:2"><a href="websites/">content, socials, video. and websites.</a></p>
-    <p class="where reveal" id="where" style="--i:2">london, est 2025.</p>
+<div class="page wide">
+  <header class="topbar">
+    <a class="home" href="/" aria-label="naavcaptured home"><span class="wm"><span class="naav">naav</span><span class="captured">captured.</span></span></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">services</a>
+      <a href="#work">work</a>
+      <a href="/websites/">websites</a>
+      <a class="topbar-cta" href="#contact">contact</a>
+    </nav>
   </header>
 
-  <main>
-    <nav class="links" aria-label="Links" id="links">
-      <!-- Filled from links.json. This fallback shows if it can't load. -->
-      <a class="pill pill-primary reveal" style="--i:3" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank"><span>Instagram @naavcaptured</span></a>
-    </nav>
-
-    <section class="work reveal" style="--i:10" aria-labelledby="workTitle">
-      <div class="work-head">
-        <h2 id="workTitle">recent <em>work.</em></h2>
-        <a class="work-more" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">@naavcaptured</a>
+  <main class="ws">
+    <!-- Hero -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <p class="eyebrow">london studio · est 2025.</p>
+      <h1 id="heroTitle">your brand, <em>captured.</em></h1>
+      <p class="lede">social media management, branding, websites and ugc-style content for small businesses. one studio, one look, from the first post to the website.</p>
+      <div class="hero-actions">
+        <a class="pill pill-primary hero-btn" href="#contact"><span>start a project</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></a>
+        <a class="pill hero-btn" href="#work"><span>see our work</span></a>
       </div>
-      <ul class="tiles" id="tiles" aria-busy="true"><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li><li class="tile skel"></li></ul>
+    </section>
+
+    <!-- Services -->
+    <section id="services" aria-labelledby="servicesTitle">
+      <h2 id="servicesTitle">what we <em>do.</em></h2>
+      <div class="services">
+        <article class="service">
+          <h3>ugc &amp; content shoots.</h3>
+          <p>ugc-style content that feels native to the feed. short videos, reels and photos, shot in your space or on location.</p>
+          <ul>
+            <li>ugc-style reels and tiktoks</li>
+            <li>product, food and behind-the-scenes photos</li>
+            <li>weddings and events, too</li>
+          </ul>
+          <a class="service-link" href="#contact" data-service="ugc &amp; content shoots">book a shoot</a>
+        </article>
+        <article class="service">
+          <h3>social media management.</h3>
+          <p>we plan, shoot, post and keep your feed consistent, so you can get on with running your business.</p>
+          <ul>
+            <li>monthly content plan</li>
+            <li>posting, captions and hashtags</li>
+            <li>content made by us, in your style</li>
+          </ul>
+          <a class="service-link" href="#contact" data-service="social media management">talk about socials</a>
+        </article>
+        <article class="service">
+          <h3>branding.</h3>
+          <p>a clear look and voice that people recognise, everywhere you show up.</p>
+          <ul>
+            <li>logo and wordmark</li>
+            <li>colours, fonts and a brand kit</li>
+            <li>social templates in your style</li>
+          </ul>
+          <a class="service-link" href="#contact" data-service="branding">start your brand</a>
+        </article>
+        <article class="service service-ink">
+          <h3>websites.</h3>
+          <p>clean, fast, mobile-first websites. live in weeks, not months. from £300.</p>
+          <ul>
+            <li>one-page or up to 5 pages</li>
+            <li>enquiry or booking forms</li>
+            <li>hosting and care plans</li>
+          </ul>
+          <a class="service-link" href="/websites/">see websites</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Work: live from Instagram (functions/api/instagram.js) -->
+    <section id="work" aria-labelledby="workTitle">
+      <div class="sec-head">
+        <h2 id="workTitle">recent <em>work.</em></h2>
+        <a class="more" href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">@naavcaptured</a>
+      </div>
+      <ul class="feed" id="feed" aria-busy="true">
+        <li class="skel"></li><li class="skel"></li><li class="skel"></li><li class="skel"></li><li class="skel"></li><li class="skel"></li>
+      </ul>
+      <p class="feed-note">see more on <a href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">instagram</a>, or browse <a href="/websites/#work">websites we've built</a>.</p>
+    </section>
+
+    <!-- How it works: a real sequence -->
+    <section aria-labelledby="howTitle">
+      <h2 id="howTitle">how it <em>works.</em></h2>
+      <ol class="steps">
+        <li><span><b>tell us.</b> what you need, using the form below.</span></li>
+        <li><span><b>plan.</b> we agree what we'll make, when, and the price.</span></li>
+        <li><span><b>create.</b> we shoot, design, build or post.</span></li>
+        <li><span><b>grow.</b> your brand looks the same everywhere, and we keep it that way.</span></li>
+      </ol>
+    </section>
+
+    <!-- Contact -->
+    <section class="enquire" id="contact" aria-labelledby="contactTitle">
+      <h2 id="contactTitle">let's work <em>together.</em></h2>
+      <p class="lede">tell us a little about your business. we'll reply within 2 working days.</p>
+
+      <!-- Formspree: replace FORM_ID with your form's ID (formspree.io/f/<id>). -->
+      <form class="form" id="contactForm" action="https://formspree.io/f/FORM_ID" method="POST" data-formspree data-thanks="/thanks" novalidate>
+        <input type="hidden" name="_subject" value="new enquiry from naavcaptured.com">
+        <div class="hp" aria-hidden="true"><label for="c-gotcha">leave this empty</label><input type="text" id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+
+        <div class="row2">
+          <div class="field"><label for="c-name">your name</label><input class="input" id="c-name" name="name" type="text" autocomplete="name" required data-msg="please add your name."></div>
+          <div class="field"><label for="c-business">business name</label><input class="input" id="c-business" name="business" type="text" autocomplete="organization" required data-msg="please add your business name."></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="c-email">email</label><input class="input" id="c-email" name="email" type="email" autocomplete="email" required data-msg="please add your email so we can reply."></div>
+          <div class="field"><label for="c-phone">phone <span class="opt">optional</span></label><input class="input" id="c-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+
+        <fieldset class="field" data-msg="please pick what you're interested in, or &quot;not sure yet&quot;.">
+          <legend>what are you interested in?</legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="services" value="ugc & content shoots"><span>ugc &amp; content shoots</span></label>
+            <label class="choice"><input type="checkbox" name="services" value="social media management"><span>social media management</span></label>
+            <label class="choice"><input type="checkbox" name="services" value="branding"><span>branding</span></label>
+            <label class="choice"><input type="checkbox" name="services" value="website"><span>website</span></label>
+            <label class="choice"><input type="checkbox" name="services" value="wedding or event"><span>wedding or event</span></label>
+            <label class="choice"><input type="checkbox" name="services" value="not sure yet" data-none><span>not sure yet</span></label>
+          </div>
+        </fieldset>
+
+        <div class="field"><label for="c-message">tell us about your project</label><textarea class="input" id="c-message" name="message" rows="5" placeholder="what you do, what you need, and any dates" required data-msg="please tell us a little about your project."></textarea></div>
+
+        <p class="form-error" role="alert" hidden></p>
+        <button class="pill pill-primary submit" type="submit"><span>send enquiry</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+        <p class="fine">by sending this, you agree we can contact you about your enquiry. see our <a href="/privacy">privacy policy</a>.</p>
+      </form>
     </section>
   </main>
 
-  <footer class="foot reveal" style="--i:11">
+  <footer class="foot site-foot">
     <span class="wm wm-sm"><span class="naav">naav</span><span class="captured">captured.</span></span>
-    <p class="mail" id="mail" hidden>hello@naavcaptured.com</p>
-    <p class="legal">© 2026 naavcaptured · <a href="websites/">websites</a> · <a href="privacy.html">privacy</a></p>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="#services">services</a><a href="/websites/">websites</a><a href="#contact">contact</a><a href="https://www.instagram.com/naavcaptured/" rel="noopener" target="_blank">instagram</a><a href="/links">links</a>
+    </nav>
+    <p class="legal">© 2026 naavcaptured · london · <a href="/privacy">privacy</a></p>
   </footer>
 </div>
-
-<script src="app.js" defer></script>
-<!-- Cloudflare Web Analytics (no cookies). Paste your token from the Cloudflare dashboard, then remove the comment markers.
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN"}'></script>
--->
+<script src="/site.js" defer></script>
+<!-- Cloudflare Web Analytics is switched on from the Cloudflare dashboard (Metrics), so nothing is needed here. -->
 </body>
 </html>

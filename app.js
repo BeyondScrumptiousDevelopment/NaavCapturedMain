@@ -84,7 +84,7 @@
 
   // Recent work: the live Instagram feed (functions/api/instagram.js) first; the
   // hand-picked recentWork list in links.json only if the feed isn't set up or is down.
-  var linksReq = fetch('links.json', { cache: 'no-cache' })
+  var linksReq = fetch('/links.json', { cache: 'no-cache' })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
 
   linksReq.then(render).catch(function () { /* keep the Instagram fallback already in the page */ });

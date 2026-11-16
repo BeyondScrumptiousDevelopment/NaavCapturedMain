@@ -1,19 +1,19 @@
 # naavcaptured.com
 
-Version 1 of the naavcaptured website: the logo intro plays, then the page settles into a branded link page. It replaces linktr.ee/naavcaptured in the Instagram bio. It's a plain static site with no build step, hosted free on Cloudflare.
+The naavcaptured studio website, plus a separate link page for the Instagram bio. It's a plain static site with no build step, hosted free on Cloudflare.
 
-| Path | What it is |
-| --- | --- |
-| `index.html`, `styles.css`, `app.js` | The link page and intro |
-| `links.json` | **Edit this** to change the links, tagline and recent work |
-| `privacy.html` | Privacy page linked from the footer |
-| `websites/`, `websites.css`, `websites.js` | The websites service page (/websites), its enquiry form and thank-you page (/websites/thanks) |
-| `assets/websites/` | Screenshots for the websites page's recent-work cards |
-| `functions/api/instagram.js` | Live Instagram feed for Recent work (runs on Cloudflare) |
-| `assets/logo/` | Logo files and icons |
-| `assets/social/` | Share preview image, social post reference |
-| `assets/video/` | Web versions of the intro animation (made by `scripts/make-intro.sh`) |
-| `_headers` | Cloudflare caching rules |
+| Address | What it is | Files |
+| --- | --- | --- |
+| `/` | Studio home: services (UGC & content shoots, social media management, branding, websites), live Instagram work, how it works, contact form | `index.html` |
+| `/links` | Link page for the Instagram bio: logo intro, link buttons, Instagram feed | `links/index.html`, `app.js`, `links.json` |
+| `/websites` | Website builds: packages, FAQ, enquiry form | `websites/index.html` |
+| `/thanks`, `/websites/thanks` | Shown after a form is sent | `thanks.html`, `websites/thanks.html` |
+| `/privacy` | Privacy page | `privacy.html` |
+| `/api/instagram` | Latest Instagram posts, used by `/` and `/links` | `functions/api/instagram.js` |
+
+Shared files: `styles.css` (tokens, wordmark, link page), `site.css` and `site.js` (studio pages and both forms), `assets/` (logos, video, screenshots), `_headers` (caching).
+
+**Instagram bio:** use `naavcaptured.com/links`.
 
 ## Changing links
 
@@ -49,14 +49,14 @@ Check it's working at `https://naavcaptured.com/api/instagram`: it lists your po
 
 `naavcaptured.com/websites` sells website builds: hero, intro, recent work, packages, how it works, FAQ and an enquiry form. The home page links to it under the tagline, and the footer has a "websites" link. The copy comes from the "naavcaptured.com — Websites section & forms" doc.
 
-**Connecting the enquiry form (Formspree, free):**
+**Connecting the forms (Formspree, free).** The contact form on `/` and the enquiry form on `/websites` work the same way, and can share one Formspree form or use one each:
 
 1. Create a free account at formspree.io with your business email, then add a form called "websites enquiry".
 2. Copy the form's endpoint, e.g. `https://formspree.io/f/abcdwxyz`.
-3. In `websites/index.html`, replace `FORM_ID` in `action="https://formspree.io/f/FORM_ID"` with your ID.
+3. Replace `FORM_ID` in `action="https://formspree.io/f/FORM_ID"` with your ID, in `index.html` (contact form) and `websites/index.html` (websites form).
 4. Send a test enquiry from your phone and check the email arrives.
 
-Until the ID is in, the form shows a friendly "please try again, or message us on Instagram" message instead of sending. Spam protection is Formspree's own filter plus a hidden `_gotcha` field. The free plan covers 50 enquiries a month.
+Until the ID is in, each form shows a friendly "please try again, or message us on Instagram" message instead of sending. Spam protection is Formspree's own filter plus a hidden `_gotcha` field. The free plan covers 50 enquiries a month.
 
 **Swapping a recent-work placeholder:** put a 16:10 screenshot (about 1200×750) in `assets/websites/`, then in `websites/index.html` replace that card's `<span class="shot shot-ph">` with an `<img class="shot" ...>` and change its `<div class="site-card">` to an `<a href="...">` with the site's link. The naavcaptured card shows how.
 
